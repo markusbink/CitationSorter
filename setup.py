@@ -6,7 +6,5 @@ setup(
     packages=find_packages(),
     install_requires=[
         "argparse",
-        "re",
-        "os",
     ],
 )
