@@ -39,31 +39,33 @@ class CitationSorter:
 
         replaced_text = self.replace_citations(text)
 
-        output_file = os.path.join(self.output_folder, os.path.basename(input_file))
+        output_file = os.path.join(
+            self.output_folder, os.path.basename(input_file))
 
         with open(output_file, "w") as f:
             f.write(replaced_text)
 
     def replace_citations(self, text):
         """
-        Replace original citations in a LaTeX document with sorted citations.
+        Replace original citations in a LaTeX text with sorted citations.
 
         :param text: The LaTeX document text.
         :return: The modified LaTeX document text.
         """
         replaced_text = re.sub(
-            r"\\cite.+?{.+?}", lambda match: self.sort_citations(match.group(0)), text
+            r"\\cite.*?{(.+?)}", lambda match: self.__sort_citations(
+                match.group(0)), text
         )
         return replaced_text
 
-    def sort_citations(self, raw_citation):
+    def __sort_citations(self, raw_citation):
         """
         Sort citations in a LaTeX citation command alphabetically by author and then by year.
 
         :param raw_citation: The raw citation string.
         :return: The modified citation string.
         """
-        match = re.search(r"(\\cite.+?){(.+?)}", raw_citation)
+        match = re.search(r"(\\cite.*?){(.+?)}", raw_citation)
         citation_type, citations = match.groups()
 
         cites = [cite.strip() for cite in citations.split(",")]
@@ -71,25 +73,26 @@ class CitationSorter:
         if len(cites) <= 1:
             return raw_citation
 
-        sorted_citations = sorted(cites, key=self.get_author_year)
+        sorted_citations = sorted(cites, key=self.__get_author_year)
         sorted_citations_string = ",".join(sorted_citations)
 
         return f"{citation_type}{{{sorted_citations_string}}}"
 
-    def get_author_year(self, cite):
+    def __get_author_year(self, cite):
         """
         Get the author and year from a citation.
 
         :param cite: The citation string.
         :return: A tuple containing author and year.
         """
-        match = re.search(r"(\w+)(\d{4})\w+", cite)
+        match = re.search(r"(\w+)(\d{4})(?:\w+)?", cite)
         author, year = match.groups()
         return (author, int(year))
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Replace citations in LaTeX files.")
+    parser = argparse.ArgumentParser(
+        description="Replace citations in LaTeX files.")
     parser.add_argument("input_folder", help="Input folder path")
     parser.add_argument("output_folder", help="Output folder path")
     args = parser.parse_args()
