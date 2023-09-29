@@ -22,10 +22,10 @@ You can use **CitationSorter** as a library in your Python scripts. Here's an ex
 from citation_sorter import CitationSorter
 
 # Create an instance of the CitationSorter class with input and output folders
-sorter = CitationSorter(input_folder='input_folder_path', output_folder='output_folder_path')
+sorter = CitationSorter()
 
 # Process LaTeX files in the input folder and save the modified versions in the output folder
-sorter.process_folder()
+sorter.process_folder(input_folder='input_folder_path', output_folder='output_folder_path')
 ```
 
 ### As a Command-Line Tool
