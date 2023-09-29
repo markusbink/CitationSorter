@@ -7,4 +7,9 @@ setup(
     install_requires=[
         "argparse",
     ],
+    entry_points={
+        'console_scripts': [
+            'citation_sorter=citation_sorter.citation_sorter:main'
+        ]
+    },
 )
