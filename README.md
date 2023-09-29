@@ -12,7 +12,7 @@ pip install citation_sorter
 
 ## Usage
 
-**CitationSorter** can be used both as a library and as a command-line tool.
+**CitationSorter** can be used as a library and as a command-line tool.
 
 ### As a Library
 

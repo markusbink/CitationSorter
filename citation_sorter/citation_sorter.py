@@ -5,20 +5,20 @@ import logging
 
 
 class CitationSorter:
-    def __init__(self, input_folder, output_folder):
+    def __init__(self):
+        pass
+
+    def process_folder(self, input_folder, output_folder):
         """
-        Initialize the CitationSorter.
+        Process all LaTeX files in the input folder and save the modified versions in the output folder.
 
         :param input_folder: The input folder path.
         :param output_folder: The output folder path.
         """
+
         self.input_folder = input_folder
         self.output_folder = output_folder
 
-    def process_folder(self):
-        """
-        Process all LaTeX files in the input folder and save the modified versions in the output folder.
-        """
         if not os.path.exists(self.output_folder):
             os.makedirs(self.output_folder)
 
@@ -97,8 +97,8 @@ def main():
     parser.add_argument("output_folder", help="Output folder path")
     args = parser.parse_args()
 
-    replacer = CitationSorter(args.input_folder, args.output_folder)
-    replacer.process_folder()
+    replacer = CitationSorter()
+    replacer.process_folder(args.input_folder, args.output_folder)
     logging.info(f"Replaced texts saved to {args.output_folder}")
 
 
