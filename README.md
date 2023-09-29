@@ -21,7 +21,7 @@ You can use **CitationSorter** as a library in your Python scripts. Here's an ex
 ```py
 from citation_sorter import CitationSorter
 
-# Create an instance of the CitationSorter class with input and output folders
+# Create an instance of the CitationSorter class
 sorter = CitationSorter()
 
 # Process LaTeX files in the input folder and save the modified versions in the output folder
