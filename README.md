@@ -7,7 +7,7 @@
 You can install **CitationSorter** using pip:
 
 ```bash
-pip install citation_sorter
+pip install citation-sorter
 ```
 
 ## Usage

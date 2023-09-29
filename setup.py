@@ -5,7 +5,7 @@ with open("README.md") as fh:
 
 setup(
     name="citation_sorter",
-    version="0.3.0",
+    version="0.3.1",
     description=(
         "CitationSorter is a Python package for sorting and organizing citations in LaTeX documents."
     ),
